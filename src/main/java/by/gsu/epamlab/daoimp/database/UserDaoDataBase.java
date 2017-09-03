@@ -1,4 +1,4 @@
-package by.gsu.epamlab.daoimp;
+package by.gsu.epamlab.daoimp.database;
 
 import by.gsu.epamlab.ConnectionManager;
 import by.gsu.epamlab.beans.Role;
@@ -12,7 +12,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDaoImp implements IUserDao {
+public class UserDaoDataBase implements IUserDao {
 
     private static final String INSERT_QUERY = "INSERT INTO users" +
             "(nickName, firstName, secondName," +
@@ -43,7 +43,7 @@ public class UserDaoImp implements IUserDao {
             rs = prst.executeQuery();
             if (rs.next()) {
                 if (password.equals(rs.getString(6))) {
-                    Role role = new RoleDaoImp().getById(rs.getInt(7));
+                    Role role = new RoleDaoDataBase().getById(rs.getInt(7));
                     user = new User(rs.getInt(1),
                             rs.getString(2),
                             rs.getString(3),
@@ -127,7 +127,7 @@ public class UserDaoImp implements IUserDao {
             rs = prst.executeQuery();
 
             if (!rs.next()) {
-                Role role = new RoleDaoImp().getByDescription(user.getRole()
+                Role role = new RoleDaoDataBase().getByDescription(user.getRole()
                         .getDescription());
                 prst = connection.prepareStatement(INSERT_QUERY);
                 prst.setString(1, user.getNickName());
@@ -187,7 +187,7 @@ public class UserDaoImp implements IUserDao {
             pstm.setString(1, user.getNickName());
             rs = pstm.executeQuery();
             if (!rs.next()) {
-                    Role role = new RoleDaoImp().getByDescription(user.getRole()
+                    Role role = new RoleDaoDataBase().getByDescription(user.getRole()
                             .getDescription());
                     pstm = connection.prepareStatement(UPDATE_USER);
                     pstm.setString(1, user.getNickName());
@@ -201,7 +201,7 @@ public class UserDaoImp implements IUserDao {
             } else {
                 int id = rs.getInt(1);
                 if (id == user.getId()) {
-                    Role role = new RoleDaoImp().getByDescription(user.getRole()
+                    Role role = new RoleDaoDataBase().getByDescription(user.getRole()
                             .getDescription());
                     pstm = connection.prepareStatement(UPDATE_USER);
                     pstm.setString(1, user.getNickName());

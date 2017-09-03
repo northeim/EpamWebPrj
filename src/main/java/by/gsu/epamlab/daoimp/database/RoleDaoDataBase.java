@@ -1,4 +1,4 @@
-package by.gsu.epamlab.daoimp;
+package by.gsu.epamlab.daoimp.database;
 
 import by.gsu.epamlab.ConnectionManager;
 import by.gsu.epamlab.beans.Role;
@@ -10,7 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoleDaoImp implements IRoleDao {
+public class RoleDaoDataBase implements IRoleDao {
 
     private static final String SELECT_BY_ID = "SELECT id, description, levelAccess FROM role WHERE id = ?";
     private static final String SELECT_ALL = "SELECT id, description, levelAccess FROM role ORDER BY levelAccess ASC";

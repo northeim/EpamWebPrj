@@ -2,7 +2,7 @@ package by.gsu.epamlab.modelUtils;
 
 import by.gsu.epamlab.beans.Event;
 import by.gsu.epamlab.controllers.Constant;
-import by.gsu.epamlab.daoimp.EventDaoImp;
+import by.gsu.epamlab.daoimp.database.EventDaoDataBase;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
@@ -21,7 +21,7 @@ public class EventsTable implements ITableOperation {
         int filmId = Integer.parseInt(req.getParameter("filmId"));
 
         Event event = new Event(1, name, date, filmId);
-        new EventDaoImp().insert(event);
+        new EventDaoDataBase().insert(event);
         req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.EVENT_ADD_SUCCEFULL);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.EVENTS);
     }
@@ -38,14 +38,14 @@ public class EventsTable implements ITableOperation {
         int filmId = Integer.parseInt(req.getParameter("filmId"));
 
         Event event = new Event(id, name, date, filmId);
-        new EventDaoImp().update(event);
+        new EventDaoDataBase().update(event);
         req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.EVENT_EDIT_SUCCEFULL);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.EVENTS);
     }
 
     public void deleteRecord(HttpServletRequest req) {
         int id = Integer.parseInt(req.getParameter("id"));
-        new EventDaoImp().delete(id);
+        new EventDaoDataBase().delete(id);
         req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.EVENT_DELETE_SUCCEFULL);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.EVENTS);
     }

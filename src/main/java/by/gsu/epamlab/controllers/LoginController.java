@@ -3,8 +3,8 @@ package by.gsu.epamlab.controllers;
 import by.gsu.epamlab.beans.Order;
 import by.gsu.epamlab.beans.User;
 import by.gsu.epamlab.dao.IOrderDao;
-import by.gsu.epamlab.daoimp.OrderDaoImp;
-import by.gsu.epamlab.daoimp.UserDaoImp;
+import by.gsu.epamlab.daoimp.database.OrderDaoDataBase;
+import by.gsu.epamlab.daoimp.database.UserDaoImp;
 import by.gsu.epamlab.exeptions.DataBaseExeption;
 import by.gsu.epamlab.exeptions.ValidationExeption;
 
@@ -26,8 +26,8 @@ public class LoginController extends AbstractController {
 
         try {
             User user = new UserDaoImp().getUser(login, password);
-            List<Order> userActualyOrder = new OrderDaoImp().getOrderByUserId(user.getId(), IOrderDao.Status.NEW);
-            List<Order> userArchiveOrder = new OrderDaoImp().getOrderByUserId(user.getId(), IOrderDao.Status.OLD);
+            List<Order> userActualyOrder = new OrderDaoDataBase().getOrderByUserId(user.getId(), IOrderDao.Status.NEW);
+            List<Order> userArchiveOrder = new OrderDaoDataBase().getOrderByUserId(user.getId(), IOrderDao.Status.OLD);
 
             HttpSession session = req.getSession(true);
             session.setAttribute(Constant.Fields.USER, user);

@@ -1,7 +1,7 @@
 package by.gsu.epamlab.controllers;
 
 import by.gsu.epamlab.beans.User;
-import by.gsu.epamlab.daoimp.UserDaoImp;
+import by.gsu.epamlab.daoimp.database.UserDaoImp;
 import by.gsu.epamlab.exeptions.DataBaseExeption;
 
 import javax.servlet.ServletException;

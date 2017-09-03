@@ -3,9 +3,9 @@ package by.gsu.epamlab.controllers;
 import by.gsu.epamlab.beans.Order;
 import by.gsu.epamlab.beans.User;
 import by.gsu.epamlab.dao.IOrderDao;
-import by.gsu.epamlab.daoimp.EventDaoImp;
-import by.gsu.epamlab.daoimp.FilmDaoImp;
-import by.gsu.epamlab.daoimp.OrderDaoImp;
+import by.gsu.epamlab.daoimp.database.EventDaoDataBase;
+import by.gsu.epamlab.daoimp.database.FilmDaoDataBase;
+import by.gsu.epamlab.daoimp.database.OrderDaoDataBase;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,13 +25,13 @@ public class UserInfoController extends AbstractController {
 
         if (user != null) {
 
-            List<Order> userActualyOrder = new OrderDaoImp().getOrderByUserId(user.getId(), IOrderDao.Status.NEW);
-            List<Order> userArchiveOrder = new OrderDaoImp().getOrderByUserId(user.getId(), IOrderDao.Status.OLD);
+            List<Order> userActualyOrder = new OrderDaoDataBase().getOrderByUserId(user.getId(), IOrderDao.Status.NEW);
+            List<Order> userArchiveOrder = new OrderDaoDataBase().getOrderByUserId(user.getId(), IOrderDao.Status.OLD);
 
             session.setAttribute(Constant.Fields.USER_ACTUALY_ORDER, userActualyOrder);
             session.setAttribute(Constant.Fields.USER_ARCHIVE_ORDER, userArchiveOrder);
-            req.setAttribute(Constant.Fields.FILM_LIST, new FilmDaoImp().getAll());
-            req.setAttribute(Constant.Fields.EVENT_LIST, new EventDaoImp().getAllWithOld());
+            req.setAttribute(Constant.Fields.FILM_LIST, new FilmDaoDataBase().getAll());
+            req.setAttribute(Constant.Fields.EVENT_LIST, new EventDaoDataBase().getAllWithOld());
 
             jumpTo(Constant.Page.USER_PAGE, req, resp);
         } else {

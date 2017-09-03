@@ -4,9 +4,9 @@ import by.gsu.epamlab.beans.Event;
 import by.gsu.epamlab.beans.Film;
 import by.gsu.epamlab.beans.Order;
 import by.gsu.epamlab.beans.User;
-import by.gsu.epamlab.daoimp.EventDaoImp;
-import by.gsu.epamlab.daoimp.FilmDaoImp;
-import by.gsu.epamlab.daoimp.OrderDaoImp;
+import by.gsu.epamlab.daoimp.database.EventDaoDataBase;
+import by.gsu.epamlab.daoimp.database.FilmDaoDataBase;
+import by.gsu.epamlab.daoimp.database.OrderDaoDataBase;
 import org.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -27,8 +27,8 @@ public class BookingController extends AbstractController {
 
         // Первый вход на страницу
         if (idEvent != null) {
-            Event event = new EventDaoImp().getById(Integer.parseInt(idEvent));
-            Film film = new FilmDaoImp().getById(event.getFilmId());
+            Event event = new EventDaoDataBase().getById(Integer.parseInt(idEvent));
+            Film film = new FilmDaoDataBase().getById(event.getFilmId());
 
             if (new Date().getTime() > event.getEventDate().getTime()) {
                 req.setAttribute(Constant.Fields.HALL_ORDER_DISABLE, true);
@@ -37,13 +37,13 @@ public class BookingController extends AbstractController {
             req.setAttribute(Constant.Fields.EVENT_FILM, film);
 
             if (user == null) {
-                String seatBusy = new OrderDaoImp().getAllBusyTicketByEventId(event.getId());
+                String seatBusy = new OrderDaoDataBase().getAllBusyTicketByEventId(event.getId());
                 req.setAttribute(Constant.Fields.HALL_ORDER_DISABLE, true);
                 req.setAttribute(Constant.Fields.HALL_SEAT_BUSY, seatBusy);
                 req.setAttribute(Constant.Fields.HALL_SEAT_SELECTED, "[]");
             } else {
-                String seatBusy = new OrderDaoImp().getAllBusyTicketByUserId(event.getId(), user.getId());
-                String seatSelected = new OrderDaoImp().getAllSelectedTicketByUserId(event.getId(), user.getId());
+                String seatBusy = new OrderDaoDataBase().getAllBusyTicketByUserId(event.getId(), user.getId());
+                String seatSelected = new OrderDaoDataBase().getAllSelectedTicketByUserId(event.getId(), user.getId());
                 req.setAttribute(Constant.Fields.HALL_SEAT_BUSY, seatBusy);
                 req.setAttribute(Constant.Fields.HALL_SEAT_SELECTED, seatSelected);
             }
@@ -59,10 +59,10 @@ public class BookingController extends AbstractController {
                 if(!"[]".equals(json)) {
 
                     Order order = new Order(1, user.getId(), Integer.parseInt(idEvent), new Date(), json.replace("[", "").replace("]", ""));
-                    new OrderDaoImp().insert(order);
+                    new OrderDaoDataBase().insert(order);
 
-                    String seatBusy = new OrderDaoImp().getAllBusyTicketByUserId(Integer.parseInt(idEvent), user.getId());
-                    String seatSelected = new OrderDaoImp().getAllSelectedTicketByUserId(Integer.parseInt(idEvent), user.getId());
+                    String seatBusy = new OrderDaoDataBase().getAllBusyTicketByUserId(Integer.parseInt(idEvent), user.getId());
+                    String seatSelected = new OrderDaoDataBase().getAllSelectedTicketByUserId(Integer.parseInt(idEvent), user.getId());
 
                     JSONObject JSON = new JSONObject();
                     JSON = JSON.put(Constant.Fields.HALL_SEAT_BUSY, seatBusy);

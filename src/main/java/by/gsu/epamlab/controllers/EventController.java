@@ -3,9 +3,9 @@ package by.gsu.epamlab.controllers;
 import by.gsu.epamlab.beans.Author;
 import by.gsu.epamlab.beans.Event;
 import by.gsu.epamlab.beans.Film;
-import by.gsu.epamlab.daoimp.AuthorDaoImp;
-import by.gsu.epamlab.daoimp.EventDaoImp;
-import by.gsu.epamlab.daoimp.FilmDaoImp;
+import by.gsu.epamlab.daoimp.database.AuthorDaoImp;
+import by.gsu.epamlab.daoimp.database.EventDaoDataBase;
+import by.gsu.epamlab.daoimp.database.FilmDaoDataBase;
 import by.gsu.epamlab.exeptions.ValidationExeption;
 
 import javax.servlet.ServletException;
@@ -24,8 +24,8 @@ public class EventController extends AbstractController {
             String id = req.getParameter("id");
             // todo -- validation
             if (id != null && !"".equals(id)) {
-                Event event = new EventDaoImp().getById(Integer.parseInt(id));
-                Film film = new FilmDaoImp().getById(event.getFilmId());
+                Event event = new EventDaoDataBase().getById(Integer.parseInt(id));
+                Film film = new FilmDaoDataBase().getById(event.getFilmId());
                 Author author = new AuthorDaoImp().getById(film.getAuthorId());
                 if (new Date().getTime() > event.getEventDate().getTime()) {
                     req.setAttribute(Constant.Fields.HALL_ORDER_DISABLE, true);

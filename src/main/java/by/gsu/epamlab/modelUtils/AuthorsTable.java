@@ -2,7 +2,7 @@ package by.gsu.epamlab.modelUtils;
 
 import by.gsu.epamlab.beans.Author;
 import by.gsu.epamlab.controllers.Constant;
-import by.gsu.epamlab.daoimp.AuthorDaoImp;
+import by.gsu.epamlab.daoimp.database.AuthorDaoImp;
 
 import javax.servlet.http.HttpServletRequest;
 

@@ -1,4 +1,4 @@
-package by.gsu.epamlab.daoimp;
+package by.gsu.epamlab.daoimp.database;
 
 import by.gsu.epamlab.ConnectionManager;
 import by.gsu.epamlab.beans.Event;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class EventDaoImp implements IEventDao {
+public class EventDaoDataBase implements IEventDao {
 
     private static final String SELECT_ALL = "SELECT * FROM events ORDER BY date ASC";
     private static final String SELECT_EVENT_BY_ID = "SELECT * FROM events " +

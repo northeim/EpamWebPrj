@@ -1,7 +1,7 @@
 package by.gsu.epamlab.controllers;
 
 import by.gsu.epamlab.beans.User;
-import by.gsu.epamlab.daoimp.*;
+import by.gsu.epamlab.daoimp.database.*;
 import by.gsu.epamlab.exeptions.DataBaseExeption;
 import by.gsu.epamlab.modelUtils.ITableOperation;
 import by.gsu.epamlab.modelUtils.TableFactory;
@@ -46,11 +46,11 @@ public class AdminController extends AbstractController {
                     }
 
                     req.setAttribute(Constant.Fields.USER_LIST, new UserDaoImp().getAll());
-                    req.setAttribute(Constant.Fields.ROLE_LIST, new RoleDaoImp().getAll());
+                    req.setAttribute(Constant.Fields.ROLE_LIST, new RoleDaoDataBase().getAll());
                     req.setAttribute(Constant.Fields.AUTHOR_LIST, new AuthorDaoImp().getAll());
-                    req.setAttribute(Constant.Fields.EVENT_LIST, new EventDaoImp().getAllWithOld());
-                    req.setAttribute(Constant.Fields.ORDER_LIST, new OrderDaoImp().getAll());
-                    req.setAttribute(Constant.Fields.FILM_LIST, new FilmDaoImp().getAll());
+                    req.setAttribute(Constant.Fields.EVENT_LIST, new EventDaoDataBase().getAllWithOld());
+                    req.setAttribute(Constant.Fields.ORDER_LIST, new OrderDaoDataBase().getAll());
+                    req.setAttribute(Constant.Fields.FILM_LIST, new FilmDaoDataBase().getAll());
                     jumpTo(Constant.Page.ADMIN_PAGE, req, resp);
 
                 } else {

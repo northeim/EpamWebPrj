@@ -1,4 +1,4 @@
-package by.gsu.epamlab.daoimp;
+package by.gsu.epamlab.daoimp.database;
 
 import by.gsu.epamlab.ConnectionManager;
 import by.gsu.epamlab.beans.Order;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class OrderDaoImp implements IOrderDao {
+public class OrderDaoDataBase implements IOrderDao {
 
     private static final String SELECT_BUSY_TICKET_BY_ID = "SELECT id, userId, eventId, ticket, date FROM orders " +
             "WHERE eventId = ?";

@@ -3,8 +3,8 @@ package by.gsu.epamlab.modelUtils;
 import by.gsu.epamlab.beans.Role;
 import by.gsu.epamlab.beans.User;
 import by.gsu.epamlab.controllers.Constant;
-import by.gsu.epamlab.daoimp.RoleDaoImp;
-import by.gsu.epamlab.daoimp.UserDaoImp;
+import by.gsu.epamlab.daoimp.database.RoleDaoDataBase;
+import by.gsu.epamlab.daoimp.database.UserDaoImp;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,7 +17,7 @@ public class UsersTable implements ITableOperation {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         int roleId = Integer.parseInt(req.getParameter("roleId"));
-        Role roleObj = new RoleDaoImp().getById(roleId);
+        Role roleObj = new RoleDaoDataBase().getById(roleId);
         User userObj = new User(1, nickName, firstName, secondName, email, password, roleObj);
         new UserDaoImp().insert(userObj);
         req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.USER_ADD_SUCCEFULL);
@@ -32,7 +32,7 @@ public class UsersTable implements ITableOperation {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         int roleId = Integer.parseInt(req.getParameter("roleId"));
-        Role roleObj = new RoleDaoImp().getById(roleId);
+        Role roleObj = new RoleDaoDataBase().getById(roleId);
         User userObj = new User( id, nickName, firstName, secondName, email, password, roleObj);
         new UserDaoImp().update(userObj);
         req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.USER_EDIT_SUCCEFULL);

@@ -2,7 +2,7 @@ package by.gsu.epamlab.modelUtils;
 
 import by.gsu.epamlab.beans.Film;
 import by.gsu.epamlab.controllers.Constant;
-import by.gsu.epamlab.daoimp.FilmDaoImp;
+import by.gsu.epamlab.daoimp.database.FilmDaoDataBase;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -53,7 +53,7 @@ public class FilmsTable implements ITableOperation {
 
 
         Film film = new Film(1, name, description, Integer.parseInt(authorId), coverPath.getSubmittedFileName());
-        new FilmDaoImp().insert(film);
+        new FilmDaoDataBase().insert(film);
         req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.FILM_ADD_SUCCEFULL);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.FILMS);
     }
@@ -102,18 +102,18 @@ public class FilmsTable implements ITableOperation {
                 }
             }
         } else {
-            Film film = new FilmDaoImp().getById(Integer.parseInt(id));
+            Film film = new FilmDaoDataBase().getById(Integer.parseInt(id));
             coverPathString = film.getCoverPath();
         }
         Film film = new Film(Integer.parseInt(id), name, description, Integer.parseInt(authorId), coverPathString);
-        new FilmDaoImp().update(film);
+        new FilmDaoDataBase().update(film);
         req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.FILM_EDIT_SUCCEFULL);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.FILMS);
     }
 
     public void deleteRecord(HttpServletRequest req) {
         String id = req.getParameter("id");
-        new FilmDaoImp().delete(Integer.parseInt(id));
+        new FilmDaoDataBase().delete(Integer.parseInt(id));
         req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.FILM_DELETE_SUCCEFULL);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.FILMS);
     }

@@ -1,4 +1,4 @@
-package by.gsu.epamlab.daoimp;
+package by.gsu.epamlab.daoimp.database;
 
 import by.gsu.epamlab.ConnectionManager;
 import by.gsu.epamlab.beans.Film;
@@ -10,7 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FilmDaoImp implements IFilmDao {
+public class FilmDaoDataBase implements IFilmDao {
 
     private static final String SELECT_ALL = "SELECT * FROM films ORDER BY name ASC";
     private static final String INSERT_QUERY = "INSERT INTO films (name, description, authorId, coverPath) VALUE(?, ?, ?, ?)";

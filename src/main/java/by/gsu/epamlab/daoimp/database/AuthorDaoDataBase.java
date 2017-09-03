@@ -1,4 +1,4 @@
-package by.gsu.epamlab.daoimp;
+package by.gsu.epamlab.daoimp.database;
 
 import by.gsu.epamlab.ConnectionManager;
 import by.gsu.epamlab.beans.Author;
@@ -11,7 +11,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AuthorDaoImp implements IAuthorDao {
+public class AuthorDaoDataBase implements IAuthorDao {
 
     private static final String SELECT_BY_ID = "SELECT * FROM authors WHERE " +
             "id = ?";

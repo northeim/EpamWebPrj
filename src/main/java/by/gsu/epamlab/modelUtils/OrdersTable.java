@@ -3,7 +3,7 @@ package by.gsu.epamlab.modelUtils;
 
 import by.gsu.epamlab.beans.Order;
 import by.gsu.epamlab.controllers.Constant;
-import by.gsu.epamlab.daoimp.OrderDaoImp;
+import by.gsu.epamlab.daoimp.database.OrderDaoDataBase;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
@@ -22,7 +22,7 @@ public class OrdersTable implements ITableOperation {
             e.printStackTrace();
         }
         Order order = new Order(1, userId, eventId, date, ticket);
-        new OrderDaoImp().insert(order);
+        new OrderDaoDataBase().insert(order);
         req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.ORDER_ADD_SUCCEFULL);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.ORDERS);
     }
@@ -40,14 +40,14 @@ public class OrdersTable implements ITableOperation {
         }
 
         Order order = new Order(id, userId, eventId, date, ticket);
-        new OrderDaoImp().update(order);
+        new OrderDaoDataBase().update(order);
         req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.ORDER_EDIT_SUCCEFULL);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.ORDERS);
     }
 
     public void deleteRecord(HttpServletRequest req) {
         int id = Integer.parseInt(req.getParameter("id"));
-        new OrderDaoImp().delete(id);
+        new OrderDaoDataBase().delete(id);
         req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.ORDER_DELETE_SUCCEFULL);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.ORDERS);
     }
