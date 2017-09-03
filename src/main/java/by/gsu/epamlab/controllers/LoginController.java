@@ -38,10 +38,8 @@ public class LoginController extends AbstractController {
             session.setAttribute(Constant.Fields.USER_ARCHIVE_ORDER, userArchiveOrder);
             jumpTo(Constant.Controller.EVENTS_CONTROLLER, req, resp);
         } catch (ValidationException e) {
-            System.out.println(e.getValue());
             jumpToError(e.getValue(), req, resp);
         } catch (DataBaseException e) {
-            System.out.println(e.getValue());
             jumpToError(e.getValue(), req, resp);
         }
     }

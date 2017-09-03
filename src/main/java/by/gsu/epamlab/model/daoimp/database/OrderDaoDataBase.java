@@ -112,19 +112,19 @@ public class OrderDaoDataBase implements IOrderDao {
                 int orderUserId = rs.getInt(2);
                 int orderEventId = rs.getInt(3);
                 String ticket = rs.getString(4);
-                Date orderDate = rs.getTimestamp(5);
+                Date orderDate = new Date(rs.getTimestamp(5).getTime());
                 String eventName = rs.getString(6);
-                Date eventDate = rs.getTimestamp(7);
+                Date eventDate = new Date(rs.getTimestamp(7).getTime());
                 Order order = null;
                 switch (status) {
                     case OLD:
-                        if (new Date().getTime() > eventDate.getTime()) {
+                        if (new Date().after(eventDate)) {
                             order = new Order(orderId, orderUserId, orderEventId, orderDate, ticket);
                             list.add(order);
                         }
                         break;
                     case NEW:
-                        if (new Date().getTime() < eventDate.getTime()) {
+                        if (new Date().before(eventDate)) {
                             order = new Order(orderId, orderUserId, orderEventId, orderDate, ticket);
                             list.add(order);
                         }
@@ -160,7 +160,7 @@ public class OrderDaoDataBase implements IOrderDao {
                     int orderUserId = rs.getInt(2);
                     int orderEventId = rs.getInt(3);
                     String ticket = rs.getString(4);
-                    Date orderDate = rs.getTimestamp(5);
+                    Date orderDate = new Date(rs.getTimestamp(5).getTime());
                     Order order = new Order(orderId, orderUserId, orderEventId, orderDate, ticket);
                     System.out.println(order);
                     list.add(order);

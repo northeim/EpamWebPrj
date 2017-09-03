@@ -20,26 +20,19 @@ public class UserInfoController extends AbstractController {
 
         HttpSession session = req.getSession();
         User user = (User)session.getAttribute(Constant.Fields.USER);
+        List<Order> userActuallyOrder =
+                AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getOrderDao().getOrderByUserId(user.getId(),
+                        IOrderDao.Status.NEW);
+        List<Order> userArchiveOrder =
+                AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getOrderDao().getOrderByUserId(user.getId(),
+                        IOrderDao.Status.OLD);
+        session.setAttribute(Constant.Fields.USER_ACTUALY_ORDER, userActuallyOrder);
+        session.setAttribute(Constant.Fields.USER_ARCHIVE_ORDER, userArchiveOrder);
+        req.setAttribute(Constant.Fields.FILM_LIST,
+                AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getFilmDao().getAll());
+        req.setAttribute(Constant.Fields.EVENT_LIST,
+                AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getEventDao().getAllWithOld());
 
-        if (user != null) {
-
-            List<Order> userActuallyOrder =
-                    AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getOrderDao().getOrderByUserId(user.getId(),
-                            IOrderDao.Status.NEW);
-            List<Order> userArchiveOrder =
-                    AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getOrderDao().getOrderByUserId(user.getId(),
-                            IOrderDao.Status.OLD);
-
-            session.setAttribute(Constant.Fields.USER_ACTUALY_ORDER, userActuallyOrder);
-            session.setAttribute(Constant.Fields.USER_ARCHIVE_ORDER, userArchiveOrder);
-            req.setAttribute(Constant.Fields.FILM_LIST,
-                    AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getFilmDao().getAll());
-            req.setAttribute(Constant.Fields.EVENT_LIST,
-                    AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getEventDao().getAllWithOld());
-
-            jumpTo(Constant.Page.USER_PAGE, req, resp);
-        } else {
-            jumpTo(Constant.Controller.EVENTS_CONTROLLER, req, resp);
-        }
+        jumpTo(Constant.Page.USER_PAGE, req, resp);
     }
 }

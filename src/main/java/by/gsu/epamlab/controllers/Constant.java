@@ -1,12 +1,12 @@
 package by.gsu.epamlab.controllers;
 
 import by.gsu.epamlab.model.factory.AbstractDaoFactory;
-import by.gsu.epamlab.model.factory.MemoryDaoFactory;
+import by.gsu.epamlab.model.factory.DataBaseDaoFactory;
 
 public class Constant {
 
-//    public static final Class<? extends AbstractDaoFactory> FACTORY = DataBaseDaoFactory.class;
-    public static final Class<? extends AbstractDaoFactory> FACTORY = MemoryDaoFactory.class;
+    public static final Class<? extends AbstractDaoFactory> FACTORY = DataBaseDaoFactory.class;
+//    public static final Class<? extends AbstractDaoFactory> FACTORY = MemoryDaoFactory.class;
 
     public static class Param {
         public static final String IMG_SERVER_REPO = "ImgServerRepo";
@@ -57,6 +57,7 @@ public class Constant {
         public static final String HALL_SEAT_BUSY = "seatBusy";
         public static final String HALL_SEAT_SELECTED = "seatSelected";
         public static final String HALL_ORDER_DISABLE = "hallOrderDisable";
+        public static final String BOOK_PROC_METHOD = "bookProcMethod";
 
     }
 

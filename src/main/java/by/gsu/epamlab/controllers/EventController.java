@@ -20,23 +20,18 @@ public class EventController extends AbstractController {
 
         try {
             String id = req.getParameter("id");
-            // todo -- validation
-            if (id != null && !"".equals(id)) {
-                Event event =
-                        AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getEventDao().getById(Integer.parseInt(id));
-                Film film = AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getFilmDao().getById(event.getFilmId());
-                Author author =
-                        AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getAuthorDao().getById(film.getAuthorId());
-                if (new Date().after(event.getEventDate())) {
-                    req.setAttribute(Constant.Fields.HALL_ORDER_DISABLE, true);
-                }
-                req.setAttribute(Constant.Fields.EVENT, event);
-                req.setAttribute(Constant.Fields.EVENT_AUTHOR, author);
-                req.setAttribute(Constant.Fields.EVENT_FILM, film);
-                jumpTo(Constant.Page.EVENT_PAGE, req, resp);
-            } else {
-                jumpTo(Constant.Controller.EVENTS_CONTROLLER, req, resp);
+            Event event =
+                    AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getEventDao().getById(Integer.parseInt(id));
+            Film film = AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getFilmDao().getById(event.getFilmId());
+            Author author =
+                    AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getAuthorDao().getById(film.getAuthorId());
+            if (new Date().after(event.getEventDate())) {
+                req.setAttribute(Constant.Fields.HALL_ORDER_DISABLE, true);
             }
+            req.setAttribute(Constant.Fields.EVENT, event);
+            req.setAttribute(Constant.Fields.EVENT_AUTHOR, author);
+            req.setAttribute(Constant.Fields.EVENT_FILM, film);
+            jumpTo(Constant.Page.EVENT_PAGE, req, resp);
         } catch (ValidationException e) {
             jumpToError(e.getValue(), Constant.Controller.EVENTS_CONTROLLER,
                     req, resp);

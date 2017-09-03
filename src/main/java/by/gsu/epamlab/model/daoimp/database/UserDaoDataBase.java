@@ -42,7 +42,7 @@ public class UserDaoDataBase implements IUserDao {
             prst.setString(1, login);
             rs = prst.executeQuery();
             if (rs.next()) {
-                if (password.equals(rs.getString(6))) {
+                if (new Integer(password.hashCode()).toString().equals(rs.getString(6))) {
                     Role role = new RoleDaoDataBase().getById(rs.getInt(7));
                     user = new User(rs.getInt(1),
                             rs.getString(2),

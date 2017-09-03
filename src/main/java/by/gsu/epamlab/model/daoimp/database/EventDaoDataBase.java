@@ -97,12 +97,12 @@ public class EventDaoDataBase implements IEventDao {
             while(rs.next()) {
                 int id = rs.getInt(1);
                 String eventName = rs.getString(2);
-                Date eventDate = rs.getTimestamp(3);
+                Date eventDate = new Date(rs.getTimestamp(3).getTime());
                 int filmId = rs.getInt(4);
 
                 Date curDate = new Date();
 
-                if (curDate.getTime() < eventDate.getTime()) {
+                if (curDate.before(eventDate)) {
                     Event event = new Event(id, eventName, eventDate, filmId);
                     events.add(event);
                     System.out.println(event);
@@ -135,12 +135,8 @@ public class EventDaoDataBase implements IEventDao {
             while(rs.next()) {
                 int id = rs.getInt(1);
                 String eventName = rs.getString(2);
-                Date eventDate = rs.getTimestamp(3);
+                Date eventDate = new Date(rs.getTimestamp(3).getTime());
                 int filmId = rs.getInt(4);
-
-                Date curDate = new Date();
-
-                System.out.println(curDate + " " + eventDate);
 
                 Event event = new Event(id, eventName, eventDate, filmId);
                 events.add(event);
@@ -173,7 +169,7 @@ public class EventDaoDataBase implements IEventDao {
             if (rs.next()) {
                 int idEvent = rs.getInt(1);
                 String eventName = rs.getString(2);
-                Date eventDate = rs.getTimestamp(3);
+                Date eventDate = new Date(rs.getTimestamp(3).getTime());
                 int filmId = rs.getInt(4);
                 event = new Event(idEvent, eventName, eventDate, filmId);
             } else {

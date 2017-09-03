@@ -18,7 +18,8 @@ public class EventDaoMemory implements IEventDao {
         Event event;
         try {
             event = new Event(id, "Film",
-                    new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse("2017-09-30T00:00"),
+                    new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").
+                            parse("2017-09-30T00:00"),
                     1);
         } catch (ParseException e) {
             throw new DataBaseException(e.getMessage());

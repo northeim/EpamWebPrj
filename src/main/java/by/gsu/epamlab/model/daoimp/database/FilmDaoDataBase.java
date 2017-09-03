@@ -36,7 +36,7 @@ public class FilmDaoDataBase implements IFilmDao {
                 Film film = new Film(id, name, description, authorId, coverPath);
                 filmList.add(film);
                 // TODO--
-                //System.out.println(film);
+                System.out.println(film);
             }
         } catch (SQLException e) {
             throw new DataBaseException(ExceptionConstant.Message.ERROR_FILM_REQUEST);
