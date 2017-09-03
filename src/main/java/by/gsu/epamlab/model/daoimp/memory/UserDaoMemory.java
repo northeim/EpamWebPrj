@@ -18,12 +18,12 @@ public class UserDaoMemory implements IUserDao {
     private static int id = 1;
 
     static {
-        User user = new User(id, "admin", "Admin", "Admin", "Admin@gmail.com",
-                "admin", new Role(1, "Admin", 10));
+        User user = new User(id, "admin", "admin", "admin", "admin@gmail.com",
+                new Integer("admin".hashCode()).toString(), new Role(1, "Admin", 10));
         USERS.put(id, user);
         generateId();
-        user = new User(id, "User", "User", "User", "User@gmail.com",
-                "User", new Role(2, "User", 0));
+        user = new User(id, "user", "user", "user", "user@gmail.com",
+                new Integer("user".hashCode()).toString(), new Role(2, "User", 0));
         USERS.put(id, user);
         generateId();
     }
@@ -36,7 +36,7 @@ public class UserDaoMemory implements IUserDao {
         User user = null;
         for (Map.Entry<Integer, User> entry: USERS.entrySet()) {
             if (entry.getValue().getNickName().equals(login)) {
-                if (entry.getValue().getPassword().equals(password)) {
+                if (entry.getValue().getPassword().equals(new Integer(password.hashCode()).toString())) {
                     user = entry.getValue();
                 } else {
                     throw new ValidationException(ExceptionConstant.Message.ERROR_PASSWORD);
@@ -50,14 +50,15 @@ public class UserDaoMemory implements IUserDao {
     }
 
     public int insert(User user) {
-        if (!USERS.containsValue(user)) {
-            synchronized (USERS) {
-                user.setId(id);
-                USERS.put(id, user);
-                generateId();
+        for (Map.Entry<Integer, User> entry: USERS.entrySet()) {
+            if (entry.getValue().getNickName().equals(user.getNickName())) {
+                throw new DataBaseException(ExceptionConstant.Message.ERROR_DUPLICATE_LOGIN);
             }
-        } else {
-            throw new DataBaseException(ExceptionConstant.Message.ERROR_DUPLICATE_LOGIN);
+        }
+        synchronized (USERS) {
+            user.setId(id);
+            USERS.put(id, user);
+            generateId();
         }
         return 0;
     }

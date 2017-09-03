@@ -8,6 +8,10 @@ public class Constant {
 //    public static final Class<? extends AbstractDaoFactory> FACTORY = DataBaseDaoFactory.class;
     public static final Class<? extends AbstractDaoFactory> FACTORY = MemoryDaoFactory.class;
 
+    public static class Param {
+        public static final String IMG_SERVER_REPO = "ImgServerRepo";
+    }
+
     public static class Page {
         public static final String ERROR_PAGE = "/error.jsp";
         public static final String LOGIN_PAGE = "/login.jsp";
@@ -21,7 +25,7 @@ public class Constant {
     }
 
     public static class Controller {
-        public static final String ADMIN_CONTROLLER = "/admin";
+        public static final String ERROR_CONTROLLER = "/error";
         public static final String EVENTS_CONTROLLER = "/events";
     }
 

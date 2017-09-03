@@ -14,7 +14,7 @@ public class UsersTable implements ITableOperation {
         String firstName = req.getParameter("firstName");
         String secondName = req.getParameter("secondName");
         String email = req.getParameter("email");
-        String password = req.getParameter("password");
+        String password = new Integer(req.getParameter("password").hashCode()).toString();
         int roleId = Integer.parseInt(req.getParameter("roleId"));
         Role roleObj = AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getRoleDao().getById(roleId);
         User userObj = new User(1, nickName, firstName, secondName, email, password, roleObj);

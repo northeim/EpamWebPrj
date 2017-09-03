@@ -1,5 +1,5 @@
 <%@ page import="by.gsu.epamlab.controllers.Constant" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isErrorPage="true" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
@@ -33,10 +33,12 @@
                     <span class="glyphicon glyphicon-exclamation-sign"></span>
                     <c:choose>
                         <c:when test="${!empty errorMessage }">
-                            <c:out value="${errorMessage}"/>
+                            ${errorMessage}
                         </c:when>
                         <c:otherwise>
-                            <c:out value="<%=Constant.Errors.ERROR_UNKNOWN%>"/>
+                            <br /><%=Constant.Errors.ERROR_UNKNOWN%><br />
+                            <strong>StatusCode:</strong> ${pageContext.errorData.statusCode}<br />
+                            <strong>ErrorType:</strong> ${pageContext.errorData.throwable}<br />
                         </c:otherwise>
                     </c:choose>
                 </p>
@@ -44,8 +46,7 @@
                 <c:if test="${!empty prevPage}">
                     <a class="btn default" href="${prevPage}">Back</a>
                 </c:if>
-                <a class="btn default"
-                   href="login.jsp">Login Page</a>
+                <a class="btn default" href="login.jsp">Login Page</a>
         </div>
         <!-- Footer -->
         <jsp:include page="footer.jsp"/>

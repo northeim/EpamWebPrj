@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" errorPage="error.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
@@ -462,7 +462,7 @@
                                         <input class="form-control" type="email" name="email" value="${user.email}"/>
                                     </td>
                                     <td>
-                                        <input class="form-control" type="text" name="password" value="${user.password}"/>
+                                        <input class="form-control" type="text" name="password" value="${user.password}" readonly/>
                                     </td>
                                     <td>
                                         <select class="form-control" name="roleId">

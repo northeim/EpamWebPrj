@@ -9,10 +9,22 @@
     </welcome-file-list>
 
     <context-param>
-        <param-name>dataSource</param-name>
-        <param-value>DataBaseDaoFactory.class</param-value>
+        <param-name>ImgServerRepo</param-name>
+        <param-value>d:\EPAM\testWeb\target\epamLabWeb\resourses\img\</param-value>
     </context-param>
     
-    
+    <session-config>
+        <session-timeout>15</session-timeout>
+    </session-config>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/error</location>
+    </error-page>
     
 </web-app>

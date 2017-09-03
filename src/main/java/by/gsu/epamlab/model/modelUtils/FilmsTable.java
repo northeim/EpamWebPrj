@@ -9,50 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 import java.io.*;
 
-// todo- Сделать красивое решение по работе с файлами;
-
 public class FilmsTable implements ITableOperation {
+
     public void addRecord(HttpServletRequest req) {
         String name = req.getParameter("name");
         String description = req.getParameter("description");
         String authorId = req.getParameter("authorId");
-        Part coverPath = null;
-        try {
-            coverPath = req.getPart("coverPath");
-        } catch (IOException e) {
-            throw new RuntimeException(e.getMessage());
-        } catch (ServletException e) {
-            throw new RuntimeException(e.getMessage());
-        }
-        String fileName = "g:\\EPAM\\testWeb\\target\\epamLabWeb\\resourses\\img\\" + coverPath.getSubmittedFileName();
-        System.out.println();
-        FileOutputStream fileOutputStream = null;
-        InputStream inputStream = null;
-        try {
-            fileOutputStream = new FileOutputStream(new File(fileName));
-            inputStream = coverPath.getInputStream();
-            byte [] bytes = new byte[1024*8];
-            int read = 0;
-            while((read = inputStream.read(bytes)) != -1) {
-                fileOutputStream.write(bytes, 0, read);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (fileOutputStream != null)
-                    fileOutputStream.close();
-                if (inputStream != null)
-                    inputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        String coverPathString = UploadImage(req, Integer.parseInt("1"));
 
-
-        Film film = new Film(1, name, description, Integer.parseInt(authorId), coverPath.getSubmittedFileName());
+        Film film = new Film(1, name, description, Integer.parseInt(authorId), coverPathString);
         AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getFilmDao().insert(film);
         req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.FILM_ADD_SUCCEFULL);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.FILMS);
@@ -63,48 +28,7 @@ public class FilmsTable implements ITableOperation {
         String name = req.getParameter("name");
         String description = req.getParameter("description");
         String authorId = req.getParameter("authorId");
-        String coverPathString = null;
-        Part coverPath = null;
-        try {
-            coverPath = req.getPart("coverPath");
-        } catch (IOException e) {
-            throw new RuntimeException(e.getMessage());
-        } catch (ServletException e) {
-            throw new RuntimeException(e.getMessage());
-        }
-
-        if (!coverPath.getSubmittedFileName().equals("")) {
-            String fileName = "g:\\EPAM\\testWeb\\target\\epamLabWeb\\resourses\\img\\" + coverPath.getSubmittedFileName();
-            coverPathString = coverPath.getSubmittedFileName();
-            System.out.println();
-            FileOutputStream fileOutputStream = null;
-            InputStream inputStream = null;
-            try {
-                fileOutputStream = new FileOutputStream(new File(fileName));
-                inputStream = coverPath.getInputStream();
-                byte [] bytes = new byte[1024*8];
-                int read = 0;
-                while((read = inputStream.read(bytes)) != -1) {
-                    fileOutputStream.write(bytes, 0, read);
-                }
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    if (fileOutputStream != null)
-                        fileOutputStream.close();
-                    if (inputStream != null)
-                        inputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        } else {
-            Film film = AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getFilmDao().getById(Integer.parseInt(id));
-            coverPathString = film.getCoverPath();
-        }
+        String coverPathString = UploadImage(req, Integer.parseInt(id));
         Film film = new Film(Integer.parseInt(id), name, description, Integer.parseInt(authorId), coverPathString);
         AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getFilmDao().update(film);
         req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.FILM_EDIT_SUCCEFULL);
@@ -116,6 +40,42 @@ public class FilmsTable implements ITableOperation {
         AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getFilmDao().delete(Integer.parseInt(id));
         req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.FILM_DELETE_SUCCEFULL);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.FILMS);
+    }
+
+    private String UploadImage(HttpServletRequest req, int id) {
+        Part coverPath = null;
+        String pathImg = "";
+        try {
+            coverPath = req.getPart("coverPath");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        }
+        if (!"".equals(coverPath.getSubmittedFileName())) {
+            String imgServerRepo = (String)req.getServletContext().getAttribute(Constant.Param.IMG_SERVER_REPO);
+            String fileName = imgServerRepo + coverPath.getSubmittedFileName();
+            try(
+                FileOutputStream fileOutputStream = new FileOutputStream(new File(fileName));
+                InputStream inputStream = coverPath.getInputStream()
+            ) {
+                byte [] bytes = new byte[1024*8];
+                int read = 0;
+                while((read = inputStream.read(bytes)) != -1) {
+                    fileOutputStream.write(bytes, 0, read);
+                }
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+               throw new RuntimeException(e);
+            }
+            pathImg = coverPath.getSubmittedFileName();
+        } else {
+            if (!"".equals(req.getParameter("id"))) {
+                pathImg = AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getFilmDao().getById(id).getCoverPath();
+            }
+        }
+        return pathImg;
     }
 
 

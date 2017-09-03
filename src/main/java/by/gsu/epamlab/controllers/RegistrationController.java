@@ -22,7 +22,7 @@ public class RegistrationController extends AbstractController {
                     req.getParameter("firstName"),
                     req.getParameter("secondName"),
                     req.getParameter("email"),
-                    req.getParameter("password"),
+                    new Integer(req.getParameter("password").hashCode()).toString(),
                     new Role(1, "User", 0));
             AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getUserDao().insert(userAdd);
             req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.USER_ADD_SUCCEFULL);
