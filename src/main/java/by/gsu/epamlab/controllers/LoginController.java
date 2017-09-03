@@ -1,12 +1,11 @@
 package by.gsu.epamlab.controllers;
 
-import by.gsu.epamlab.beans.Order;
-import by.gsu.epamlab.beans.User;
-import by.gsu.epamlab.dao.IOrderDao;
-import by.gsu.epamlab.daoimp.database.OrderDaoDataBase;
-import by.gsu.epamlab.daoimp.database.UserDaoImp;
-import by.gsu.epamlab.exeptions.DataBaseExeption;
-import by.gsu.epamlab.exeptions.ValidationExeption;
+import by.gsu.epamlab.exeptions.DataBaseException;
+import by.gsu.epamlab.exeptions.ValidationException;
+import by.gsu.epamlab.model.beans.Order;
+import by.gsu.epamlab.model.beans.User;
+import by.gsu.epamlab.model.dao.IOrderDao;
+import by.gsu.epamlab.model.factory.AbstractDaoFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,22 +24,23 @@ public class LoginController extends AbstractController {
         String password = req.getParameter("password");
 
         try {
-            User user = new UserDaoImp().getUser(login, password);
-            List<Order> userActualyOrder = new OrderDaoDataBase().getOrderByUserId(user.getId(), IOrderDao.Status.NEW);
-            List<Order> userArchiveOrder = new OrderDaoDataBase().getOrderByUserId(user.getId(), IOrderDao.Status.OLD);
-
+            User user =
+                    AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getUserDao().getUser(login, password);
+            List<Order> userActuallyOrder =
+                    AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getOrderDao().
+                            getOrderByUserId(user.getId(), IOrderDao.Status.NEW);
+            List<Order> userArchiveOrder =
+                    AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getOrderDao().
+                            getOrderByUserId(user.getId(), IOrderDao.Status.OLD);
             HttpSession session = req.getSession(true);
             session.setAttribute(Constant.Fields.USER, user);
-            session.setAttribute(Constant.Fields.USER_ACTUALY_ORDER, userActualyOrder);
+            session.setAttribute(Constant.Fields.USER_ACTUALY_ORDER, userActuallyOrder);
             session.setAttribute(Constant.Fields.USER_ARCHIVE_ORDER, userArchiveOrder);
-            //Todo: debug LoginController;
-            System.out.println(user);
-
             jumpTo(Constant.Controller.EVENTS_CONTROLLER, req, resp);
-        } catch (ValidationExeption e) {
+        } catch (ValidationException e) {
             System.out.println(e.getValue());
             jumpToError(e.getValue(), req, resp);
-        } catch (DataBaseExeption e) {
+        } catch (DataBaseException e) {
             System.out.println(e.getValue());
             jumpToError(e.getValue(), req, resp);
         }

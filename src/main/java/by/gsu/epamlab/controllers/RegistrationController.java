@@ -1,9 +1,9 @@
 package by.gsu.epamlab.controllers;
 
-import by.gsu.epamlab.beans.Role;
-import by.gsu.epamlab.beans.User;
-import by.gsu.epamlab.daoimp.database.UserDaoImp;
-import by.gsu.epamlab.exeptions.DataBaseExeption;
+import by.gsu.epamlab.exeptions.DataBaseException;
+import by.gsu.epamlab.model.beans.Role;
+import by.gsu.epamlab.model.beans.User;
+import by.gsu.epamlab.model.factory.AbstractDaoFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,13 +24,10 @@ public class RegistrationController extends AbstractController {
                     req.getParameter("email"),
                     req.getParameter("password"),
                     new Role(1, "User", 0));
-            new UserDaoImp().insert(userAdd);
-            req.setAttribute(Constant.Fields.USER_TABLE_STATUS,
-                    Constant.Message.USER_ADD_SUCCEFULL);
-
+            AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getUserDao().insert(userAdd);
+            req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.USER_ADD_SUCCEFULL);
             jumpTo(Constant.Page.REGISTRATION_PAGE, req, resp);
-
-        } catch (DataBaseExeption e) {
+        } catch (DataBaseException e) {
             jumpToError(e.getValue(), req, resp);
         }
 

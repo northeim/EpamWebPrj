@@ -1,8 +1,7 @@
 package by.gsu.epamlab.controllers;
 
-import by.gsu.epamlab.daoimp.database.EventDaoDataBase;
-import by.gsu.epamlab.daoimp.database.FilmDaoDataBase;
-import by.gsu.epamlab.exeptions.DataBaseExeption;
+import by.gsu.epamlab.exeptions.DataBaseException;
+import by.gsu.epamlab.model.factory.AbstractDaoFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,10 +14,12 @@ public class EventsController extends AbstractController{
 
     protected void controllerLogic(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            req.setAttribute(Constant.Fields.EVENT_LIST, new EventDaoDataBase().getAll());
-            req.setAttribute(Constant.Fields.FILM_LIST, new FilmDaoDataBase().getAll());
+            req.setAttribute(Constant.Fields.EVENT_LIST,
+                    AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getEventDao().getAll());
+            req.setAttribute(Constant.Fields.FILM_LIST,
+                    AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getFilmDao().getAll());
             jumpTo(Constant.Page.INDEX_PAGE, req, resp);
-        } catch (DataBaseExeption e) {
+        } catch (DataBaseException e) {
             jumpToError(e.getValue(), req, resp);
         }
 

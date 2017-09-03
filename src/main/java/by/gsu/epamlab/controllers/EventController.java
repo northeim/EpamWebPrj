@@ -1,12 +1,10 @@
 package by.gsu.epamlab.controllers;
 
-import by.gsu.epamlab.beans.Author;
-import by.gsu.epamlab.beans.Event;
-import by.gsu.epamlab.beans.Film;
-import by.gsu.epamlab.daoimp.database.AuthorDaoImp;
-import by.gsu.epamlab.daoimp.database.EventDaoDataBase;
-import by.gsu.epamlab.daoimp.database.FilmDaoDataBase;
-import by.gsu.epamlab.exeptions.ValidationExeption;
+import by.gsu.epamlab.exeptions.ValidationException;
+import by.gsu.epamlab.model.beans.Author;
+import by.gsu.epamlab.model.beans.Event;
+import by.gsu.epamlab.model.beans.Film;
+import by.gsu.epamlab.model.factory.AbstractDaoFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,10 +22,12 @@ public class EventController extends AbstractController {
             String id = req.getParameter("id");
             // todo -- validation
             if (id != null && !"".equals(id)) {
-                Event event = new EventDaoDataBase().getById(Integer.parseInt(id));
-                Film film = new FilmDaoDataBase().getById(event.getFilmId());
-                Author author = new AuthorDaoImp().getById(film.getAuthorId());
-                if (new Date().getTime() > event.getEventDate().getTime()) {
+                Event event =
+                        AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getEventDao().getById(Integer.parseInt(id));
+                Film film = AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getFilmDao().getById(event.getFilmId());
+                Author author =
+                        AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getAuthorDao().getById(film.getAuthorId());
+                if (new Date().after(event.getEventDate())) {
                     req.setAttribute(Constant.Fields.HALL_ORDER_DISABLE, true);
                 }
                 req.setAttribute(Constant.Fields.EVENT, event);
@@ -37,7 +37,7 @@ public class EventController extends AbstractController {
             } else {
                 jumpTo(Constant.Controller.EVENTS_CONTROLLER, req, resp);
             }
-        } catch (ValidationExeption e) {
+        } catch (ValidationException e) {
             jumpToError(e.getValue(), Constant.Controller.EVENTS_CONTROLLER,
                     req, resp);
         }

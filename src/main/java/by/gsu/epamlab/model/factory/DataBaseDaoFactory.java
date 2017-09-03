@@ -1,7 +1,7 @@
 package by.gsu.epamlab.model.factory;
 
-import by.gsu.epamlab.dao.*;
-import by.gsu.epamlab.daoimp.database.*;
+import by.gsu.epamlab.model.dao.*;
+import by.gsu.epamlab.model.daoimp.database.*;
 
 public class DataBaseDaoFactory extends AbstractDaoFactory {
 

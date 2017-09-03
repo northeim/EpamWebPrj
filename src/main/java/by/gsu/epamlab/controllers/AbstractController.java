@@ -40,11 +40,4 @@ public abstract class AbstractController extends HttpServlet {
         req.setAttribute(Constant.Fields.PREV_PAGE, page);
         jumpTo(Constant.Page.ERROR_PAGE, req, resp);
     }
-
-    public void redirectTo(String url, HttpServletRequest req,
-                            HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect(url);
-    }
-
-
 }

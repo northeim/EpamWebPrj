@@ -8,5 +8,11 @@
         <welcome-file>events</welcome-file>
     </welcome-file-list>
 
-
+    <context-param>
+        <param-name>dataSource</param-name>
+        <param-value>DataBaseDaoFactory.class</param-value>
+    </context-param>
+    
+    
+    
 </web-app>

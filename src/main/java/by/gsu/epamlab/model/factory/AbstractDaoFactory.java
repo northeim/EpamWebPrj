@@ -1,6 +1,6 @@
 package by.gsu.epamlab.model.factory;
 
-import by.gsu.epamlab.dao.*;
+import by.gsu.epamlab.model.dao.*;
 
 import java.util.HashMap;
 import java.util.Map;

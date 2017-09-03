@@ -1,6 +1,12 @@
 package by.gsu.epamlab.controllers;
 
+import by.gsu.epamlab.model.factory.AbstractDaoFactory;
+import by.gsu.epamlab.model.factory.MemoryDaoFactory;
+
 public class Constant {
+
+//    public static final Class<? extends AbstractDaoFactory> FACTORY = DataBaseDaoFactory.class;
+    public static final Class<? extends AbstractDaoFactory> FACTORY = MemoryDaoFactory.class;
 
     public static class Page {
         public static final String ERROR_PAGE = "/error.jsp";

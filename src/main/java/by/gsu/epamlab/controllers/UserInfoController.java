@@ -1,11 +1,9 @@
 package by.gsu.epamlab.controllers;
 
-import by.gsu.epamlab.beans.Order;
-import by.gsu.epamlab.beans.User;
-import by.gsu.epamlab.dao.IOrderDao;
-import by.gsu.epamlab.daoimp.database.EventDaoDataBase;
-import by.gsu.epamlab.daoimp.database.FilmDaoDataBase;
-import by.gsu.epamlab.daoimp.database.OrderDaoDataBase;
+import by.gsu.epamlab.model.beans.Order;
+import by.gsu.epamlab.model.beans.User;
+import by.gsu.epamlab.model.dao.IOrderDao;
+import by.gsu.epamlab.model.factory.AbstractDaoFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,13 +23,19 @@ public class UserInfoController extends AbstractController {
 
         if (user != null) {
 
-            List<Order> userActualyOrder = new OrderDaoDataBase().getOrderByUserId(user.getId(), IOrderDao.Status.NEW);
-            List<Order> userArchiveOrder = new OrderDaoDataBase().getOrderByUserId(user.getId(), IOrderDao.Status.OLD);
+            List<Order> userActuallyOrder =
+                    AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getOrderDao().getOrderByUserId(user.getId(),
+                            IOrderDao.Status.NEW);
+            List<Order> userArchiveOrder =
+                    AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getOrderDao().getOrderByUserId(user.getId(),
+                            IOrderDao.Status.OLD);
 
-            session.setAttribute(Constant.Fields.USER_ACTUALY_ORDER, userActualyOrder);
+            session.setAttribute(Constant.Fields.USER_ACTUALY_ORDER, userActuallyOrder);
             session.setAttribute(Constant.Fields.USER_ARCHIVE_ORDER, userArchiveOrder);
-            req.setAttribute(Constant.Fields.FILM_LIST, new FilmDaoDataBase().getAll());
-            req.setAttribute(Constant.Fields.EVENT_LIST, new EventDaoDataBase().getAllWithOld());
+            req.setAttribute(Constant.Fields.FILM_LIST,
+                    AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getFilmDao().getAll());
+            req.setAttribute(Constant.Fields.EVENT_LIST,
+                    AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getEventDao().getAllWithOld());
 
             jumpTo(Constant.Page.USER_PAGE, req, resp);
         } else {
