@@ -1,0 +1,230 @@
+/* Style all font awesome icons */
+.fa {
+    padding-top: 8px;
+    font-size: 5px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30%;
+}
+
+/* Add a hover effect if you want */
+.fa:hover {
+    opacity: 0.7;
+    text-decoration: none;
+}
+
+/* Set a specific color for each brand */
+
+/* Facebook */
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+/* Twitter */
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+/* VK */
+.fa-vk {
+    background: #45668e;
+    color: white;
+}
+
+/* Youtube */
+.fa-youtube {
+    background: #bb0000;
+    color: white;
+}
+
+/* Odnoklassniki */
+.fa-odnoklassniki {
+    background: #ff6600;
+    color: white;
+}
+
+/* Instagram */
+.fa-instagram {
+    background: #125688;
+    color: white;
+}
+
+.danger {
+    background-color: #ffdddd;
+    border-left: 6px solid #f44336;
+    padding-left: 50px;
+}
+
+/* Gray */
+.default {
+    border: none;
+    padding: 14px 28px; /* Add some padding */
+    cursor: pointer; /* Add a pointer cursor on mouse-over */
+    background-color: #e7e7e7;
+    color: black;
+
+}
+.btn-default:hover {
+    background: #ddd;
+}
+
+.movie-win {
+    color: black;
+    height: 300px;
+    max-height: 400px;
+}
+
+.movie-name > a {
+    text-decoration: none;
+ }
+
+.movie-name > a:hover {
+    text-decoration: none;
+    color: black;
+    opacity: 0.9;
+}
+
+.movie-name {
+    height: 50px;
+}
+
+.movie-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}
+
+.movie-img img{
+    width: 100%;
+    border-radius: 15px;
+    max-width: 180px;
+}
+
+.col-sm-2 img {
+    width: 100%;
+    border-radius: 15px;
+    max-width: 250px;
+}
+
+/*img.event-img{*/
+    /*height: 250px;*/
+    /*border-radius: 15px;*/
+/*}*/
+
+#holder {
+    height:350px;
+    width:535px;
+    border:0px solid black;
+    margin: 0 auto;
+}
+#place {
+    position: relative;
+    margin: 60px 7px;
+    height: 160px;
+}
+#place a {
+    font-size: 0.8em;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+#place li
+{
+    list-style: none outside none;
+    position: absolute;
+}
+#place li:hover
+{
+    box-shadow: 5px 5px 2px grey;
+}
+#place .seat {
+    background: antiquewhite;
+    display: block;
+    border-radius: 10px;
+    height: 30px;
+    width: 30px;
+    padding-top: 7px;
+}
+#place .selectedSeat
+{
+    background: red;
+}
+
+#place .selectingSeat
+{
+    background: dodgerblue;
+}
+
+#place .seatBusy
+{
+    background: grey;
+}
+
+#place .row-3, #place .row-4 {
+    margin-top:20px;
+}
+#seatDescription li {
+    list-style: none outside none;
+    padding-left: 20px;
+    height: 20px;
+    width: 20px;
+    margin: 5px;
+    border-radius: 8px;
+    float: left;
+}
+
+#seatDescription p {
+    font-size: 0.8em;
+    text-align: left;
+    padding-top: 7px;
+    float: left;
+}
+
+#seatDescription .seatDesc {
+    background: antiquewhite;
+}
+
+#seatDescription .seatBusyDesc {
+    background: grey;
+}
+
+#seatDescription .selectedSeatDesc {
+    background: dodgerblue;
+}
+
+#seatDescription .selectingSeatDesc {
+    background: red;
+}
+
+/* Movie Screen Style */
+#movie-screen {
+    width: 75%;
+    margin: 0 auto;
+    background: #4dc7ff;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#adminNavTable a {
+    color: black;
+}
+
+#userNavBar a {
+    color: black;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+div.hall-info-msg {
+    color: #ff324d;
+    text-align: center;
+    height: 30px;
+}
