@@ -38,7 +38,12 @@ var init = function (seatBusy, seatSelected) {
 
 // Начальная отрисовка видеозала
 $(document).ready(function () {
-    init(seat, seatSelected);
+    if(typeof seat !== 'undefined' && typeof seatSelected !== 'undefined') {
+        init(seat, seatSelected);
+    } else {
+        init("", "");
+    }
+
 })
 
 // Обработчики событий кликов по посадочным местам
@@ -137,7 +142,7 @@ $("#liUsers").click(function () {
 })
 
 $(document).ready(function () {
-    if (liId != "") {
+    if (typeof liId !== 'undefined') {
        $(liId).click();
     } else {
         $("#liAuthors").click();

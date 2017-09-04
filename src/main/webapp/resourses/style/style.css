@@ -228,3 +228,13 @@ div.hall-info-msg {
     text-align: center;
     height: 30px;
 }
+
+div#online {
+    text-indent: 1cm;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px #599bff ;
+}
+
+p#filmDescription {
+    text-indent: 1cm;
+}

@@ -60,7 +60,7 @@
     <div class="row">
         <div class="col-sm-12">
             <p><strong>Description</strong><span class="glyphicon glyphicon-list-alt"></span></p>
-            <p><i>${eventFilm.description}</i></p>
+            <p id="filmDescription"><i>${eventFilm.description}</i></p>
             <p><strong>Director:</strong> ${eventAuthor.authorName}</p>
         </div>
         </c:if>

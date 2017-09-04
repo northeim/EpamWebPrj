@@ -71,14 +71,14 @@
 
     <!-- Footer -->
     <jsp:include page="footer.jsp"/>
-
+    <script src="resourses/js/javaScript.js"></script>
     <input id="idEvent" type="hidden" name="idEvent" value="${event.id}">
     <input id="userSession" type="hidden" value="${sessionScope.get("user")}">
     <script>
         var seat = ${seatBusy};
         var seatSelected = ${seatSelected};
     </script>
-    <script src="resourses/js/javaScript.js"></script>
+
 </div>
 
 </body>

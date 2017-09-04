@@ -58,6 +58,7 @@ public class Constant {
         public static final String HALL_SEAT_SELECTED = "seatSelected";
         public static final String HALL_ORDER_DISABLE = "hallOrderDisable";
         public static final String BOOK_PROC_METHOD = "bookProcMethod";
+        public static final String TOTAL_USER_ON_SITE = "totalUserOnSite";
 
     }
 

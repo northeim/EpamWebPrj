@@ -136,7 +136,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <img height="300px" h src="${pageContext.servletContext.contextPath}/resourses/img/${film.coverPath}">
+                                    <img height="300px" src="${pageContext.servletContext.contextPath}/resourses/img/${film.coverPath}">
                                     <input class="form-control" type="file" name="coverPath" placeholder="CoverPath"/>
                                 </td>
                                 <td class="text-center">

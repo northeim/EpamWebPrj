@@ -39,9 +39,6 @@ public class BookingController extends AbstractController {
         Film film =
                 AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getFilmDao().getById(event.getFilmId());
 
-        if (new Date().after(event.getEventDate())) {
-            req.setAttribute(Constant.Fields.HALL_ORDER_DISABLE, true);
-        }
         req.setAttribute(Constant.Fields.EVENT, event);
         req.setAttribute(Constant.Fields.EVENT_FILM, film);
         String seatBusy =
@@ -57,7 +54,11 @@ public class BookingController extends AbstractController {
             String seatSelected =
                     AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getOrderDao().
                             getAllSelectedTicketByUserId(event.getId(), user.getId());
-            req.setAttribute(Constant.Fields.HALL_ORDER_DISABLE, false);
+            if (new Date().after(event.getEventDate())) {
+                req.setAttribute(Constant.Fields.HALL_ORDER_DISABLE, true);
+            } else {
+                req.setAttribute(Constant.Fields.HALL_ORDER_DISABLE, false);
+            }
             req.setAttribute(Constant.Fields.HALL_SEAT_BUSY, seatBusy);
             req.setAttribute(Constant.Fields.HALL_SEAT_SELECTED, seatSelected);
         }

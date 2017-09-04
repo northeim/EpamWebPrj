@@ -122,9 +122,6 @@
         </div>
 
 
-        <script>
-            var liId = "";
-        </script>
         <!-- Footer -->
         <jsp:include page="footer.jsp"/>
         <script src="resourses/js/javaScript.js"></script>

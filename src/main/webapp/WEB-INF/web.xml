@@ -10,7 +10,7 @@
 
     <context-param>
         <param-name>ImgServerRepo</param-name>
-        <param-value>d:\EPAM\testWeb\target\epamLabWeb\resourses\img\</param-value>
+        <param-value>d:\_EPAM\autumn_2016\testWeb\testWeb\target\epamLabWeb\resourses\img\</param-value>
     </context-param>
     
     <session-config>
