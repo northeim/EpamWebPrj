@@ -1,4 +1,4 @@
-package by.gsu.epamlab.model.modelUtils;
+package by.gsu.epamlab.model.modelUtils.admin;
 
 import by.gsu.epamlab.model.beans.Author;
 import by.gsu.epamlab.controllers.Constant;

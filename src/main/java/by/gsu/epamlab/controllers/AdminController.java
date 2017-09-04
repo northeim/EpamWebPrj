@@ -3,8 +3,8 @@ package by.gsu.epamlab.controllers;
 import by.gsu.epamlab.exeptions.DataBaseException;
 import by.gsu.epamlab.model.beans.User;
 import by.gsu.epamlab.model.factory.AbstractDaoFactory;
-import by.gsu.epamlab.model.modelUtils.ITableOperation;
-import by.gsu.epamlab.model.modelUtils.TableFactory;
+import by.gsu.epamlab.model.modelUtils.admin.ITableOperation;
+import by.gsu.epamlab.model.modelUtils.admin.TableFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;

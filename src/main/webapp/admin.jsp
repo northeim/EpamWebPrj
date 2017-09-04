@@ -550,7 +550,7 @@
         </c:if>
         <c:if test="${empty adminUlId}">
             <script>
-                var liId = "";
+                //var liId = "";
             </script>
         </c:if>
 

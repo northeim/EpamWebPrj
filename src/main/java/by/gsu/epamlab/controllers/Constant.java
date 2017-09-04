@@ -2,11 +2,12 @@ package by.gsu.epamlab.controllers;
 
 import by.gsu.epamlab.model.factory.AbstractDaoFactory;
 import by.gsu.epamlab.model.factory.DataBaseDaoFactory;
+import by.gsu.epamlab.model.factory.MemoryDaoFactory;
 
 public class Constant {
 
-    public static final Class<? extends AbstractDaoFactory> FACTORY = DataBaseDaoFactory.class;
-//    public static final Class<? extends AbstractDaoFactory> FACTORY = MemoryDaoFactory.class;
+//    public static final Class<? extends AbstractDaoFactory> FACTORY = DataBaseDaoFactory.class;
+    public static final Class<? extends AbstractDaoFactory> FACTORY = MemoryDaoFactory.class;
 
     public static class Param {
         public static final String IMG_SERVER_REPO = "ImgServerRepo";

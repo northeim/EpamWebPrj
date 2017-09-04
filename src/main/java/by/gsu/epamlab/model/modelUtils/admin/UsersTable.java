@@ -1,9 +1,10 @@
-package by.gsu.epamlab.model.modelUtils;
+package by.gsu.epamlab.model.modelUtils.admin;
 
 import by.gsu.epamlab.controllers.Constant;
 import by.gsu.epamlab.model.beans.Role;
 import by.gsu.epamlab.model.beans.User;
 import by.gsu.epamlab.model.factory.AbstractDaoFactory;
+import by.gsu.epamlab.model.modelUtils.security.PasswordCrypter;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,7 +15,7 @@ public class UsersTable implements ITableOperation {
         String firstName = req.getParameter("firstName");
         String secondName = req.getParameter("secondName");
         String email = req.getParameter("email");
-        String password = new Integer(req.getParameter("password").hashCode()).toString();
+        String password = new PasswordCrypter().calculateHash(req.getParameter("password"));
         int roleId = Integer.parseInt(req.getParameter("roleId"));
         Role roleObj = AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getRoleDao().getById(roleId);
         User userObj = new User(1, nickName, firstName, secondName, email, password, roleObj);

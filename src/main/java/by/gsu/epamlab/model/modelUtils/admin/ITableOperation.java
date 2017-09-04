@@ -1,4 +1,4 @@
-package by.gsu.epamlab.model.modelUtils;
+package by.gsu.epamlab.model.modelUtils.admin;
 
 import javax.servlet.http.HttpServletRequest;
 

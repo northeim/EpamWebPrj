@@ -32,7 +32,7 @@ public class LoginController extends AbstractController {
             List<Order> userArchiveOrder =
                     AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getOrderDao().
                             getOrderByUserId(user.getId(), IOrderDao.Status.OLD);
-            HttpSession session = req.getSession(true);
+            HttpSession session = req.getSession();
             session.setAttribute(Constant.Fields.USER, user);
             session.setAttribute(Constant.Fields.USER_ACTUALY_ORDER, userActuallyOrder);
             session.setAttribute(Constant.Fields.USER_ARCHIVE_ORDER, userArchiveOrder);

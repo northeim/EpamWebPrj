@@ -1,7 +1,13 @@
 package by.gsu.epamlab;
 
 import by.gsu.epamlab.model.beans.Author;
+import by.gsu.epamlab.model.modelUtils.security.PasswordCrypter;
+import sun.misc.BASE64Encoder;
+import sun.security.provider.MD5;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,7 +17,7 @@ public class Runner {
 
     private static int id = 1;
 
-    public static void main(String[] arg) {
+    public static void main(String[] arg) throws NoSuchAlgorithmException {
         System.out.println(genId());
         System.out.println(genId());
         Map<Integer, Author> map = new HashMap<Integer, Author>();
@@ -21,6 +27,11 @@ public class Runner {
         printMap(map);
 
         printMap(new ArrayList<Author>(map.values()));
+
+        System.out.println(new PasswordCrypter().calculateHash("qwerty"));
+
+
+
 
 
     }

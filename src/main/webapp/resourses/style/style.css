@@ -238,3 +238,8 @@ div#online {
 p#filmDescription {
     text-indent: 1cm;
 }
+
+#place > *{
+    cursor: pointer;
+    user-select: none;
+}
