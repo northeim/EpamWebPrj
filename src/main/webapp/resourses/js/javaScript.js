@@ -1,56 +1,63 @@
-
-// Конфиг для видеозала
+/*
+    Setting's for movie hall;
+*/
 var settings = {
     rows: 5,
     cols: 15,
-    rowCssPrefix: 'row-',
-    colCssPrefix: 'col-',
+    rowCssPrefix: "row-",
+    colCssPrefix: "col-",
     seatWidth: 35,
     seatHeight: 35,
-    seatCss: 'seat',
-    selectedSeatCss: 'selectedSeat',
-    selectingSeatCss: 'selectingSeat',
-    seatBusyCss: 'seatBusy',
-}
-
-// Отрисовка видеозала
-var init = function (seatBusy, seatSelected) {
-    var str = [], seatNo, className;
-    for (i = 0; i < settings.rows; i++) {
-        for (j = 0; j < settings.cols; j++) {
-            seatNo = (i*settings.cols + j + 1);
-            className = settings.seatCss + ' ' + settings.rowCssPrefix + i.toString() + ' ' + settings.colCssPrefix + j.toString();
-            if ($.isArray(seatBusy) && $.inArray(seatNo.toString(), seatBusy) != -1) {
-                className += ' ' + settings.seatBusyCss;
-            } else {
-                if ($.isArray(seatSelected) && $.inArray(seatNo.toString(), seatSelected) != -1) {
-                    className += ' ' + settings.selectedSeatCss;
-                }
-            }
-            str.push('<li class="' + className + '"' +
-                'style="top:' + (i * settings.seatHeight).toString() + 'px;left:' + (j * settings.seatWidth).toString() + 'px">' +
-                '<a title="' + seatNo + '">' + seatNo + '</a>' +
-                '</li>');
-        }
-    }
-    $('#place').html(str.join(''));
+    seatCss: "seat",
+    selectedSeatCss: "selectedSeat",
+    selectingSeatCss: "selectingSeat",
+    seatBusyCss: "seatBusy"
 };
 
-// Начальная отрисовка видеозала
+/*
+    Generate HTML movie hall;
+*/
+function init(seatBusy, seatSelected) {
+    var str = [];
+    var seatNo, className, i, j;
+    for (i = 0; i < settings.rows; i++) {
+        for (j = 0; j < settings.cols; j++) {
+            seatNo = (i * settings.cols + j + 1);
+            className = settings.seatCss + " " + settings.rowCssPrefix +
+                i.toString() + " " + settings.colCssPrefix + j.toString();
+            if ($.isArray(seatBusy) &&
+                $.inArray(seatNo.toString(), seatBusy) != -1) {
+                className += " " + settings.seatBusyCss;
+            } else {
+                if ($.isArray(seatSelected) &&
+                    $.inArray(seatNo.toString(), seatSelected) != -1) {
+                    className += " " + settings.selectedSeatCss;
+                }
+            }
+            str.push("<li class=\"" + className + "\" style=\"top:" +
+                (i * settings.seatHeight).toString() + "px;left:" +
+                (j * settings.seatWidth).toString() + "px\">" +
+                "<a title=\"" + seatNo + "\">" + seatNo + "</a>" + "</li>");
+        }
+    }
+    $("#place").html(str.join(""));
+}
+
 $(document).ready(function () {
-    if(typeof seat !== 'undefined' && typeof seatSelected !== 'undefined') {
+    if(typeof seat !== "undefined" && typeof seatSelected !== "undefined") {
         init(seat, seatSelected);
     } else {
         init("", "");
     }
+});
 
-})
-
-// Обработчики событий кликов по посадочным местам
-$(document).on('click', '.'+settings.seatCss, function () {
+/*
+    onClick seatCss class handlers;
+ */
+$(document).on("click", "." + settings.seatCss, function () {
     var userSession = $("#userSession").val();
-    if (userSession != "") {
-        if ($(this).hasClass(settings.seatBusyCss)){
+    if (userSession !== "") {
+        if ($(this).hasClass(settings.seatBusyCss)) {
             $(".hall-info-msg").html("<strong>This seat has been reserved</strong>");
             $(".hall-info-msg").children().fadeOut(5000);
         }
@@ -68,7 +75,6 @@ $(document).on('click', '.'+settings.seatCss, function () {
     }
 })
 
-// Выбор всех выбранных мест и отправка данных сервлету
 $("#buyBtn").click(function () {
 
     var str = [], item;
@@ -76,38 +82,24 @@ $("#buyBtn").click(function () {
         item = $(this).attr("title");
         str.push(item);
     });
-    //alert(str);
     var json = JSON.stringify(str);
-    //alert(str);
     var idEvent = $("#idEvent").val();
 
-    $.post("/booking",
-        {ticketArray: json,
-         idEvent: idEvent
-        }, function (data, status){
-        // console.log(data);
-        // console.log(data.toString());
-        var busySeat = JSON.parse(data);
-        // console.log(busySeat.seatBusy);
-        var seatBusy = JSON.parse(busySeat.seatBusy);
-        var seatSelected = JSON.parse(busySeat.seatSelected);
-        // console.log(seatBusy);
-
-        init(seatBusy, seatSelected);
-    })
-
-
+    $.post("/booking", {ticketArray: json, idEvent: idEvent},
+        function (data, status){
+            var busySeat = JSON.parse(data);
+            var seatBusy = JSON.parse(busySeat.seatBusy);
+            var seatSelected = JSON.parse(busySeat.seatSelected);
+            init(seatBusy, seatSelected);
+        });
 })
 
-function getJson() {
+function getSelectedSeatLength() {
     var str = [], item;
     $.each($("#place li." + settings.selectingSeatCss + " a"), function () {
         item = $(this).attr("title");
         str.push(item);
     });
-    //alert(str);
-    var json = JSON.stringify(str);
-    //alert(str);
     return str.length;
 }
 
@@ -142,7 +134,7 @@ $("#liUsers").click(function () {
 })
 
 $(document).ready(function () {
-    if (typeof liId !== 'undefined') {
+    if (typeof liId !== "undefined") {
        $(liId).click();
     } else {
         $("#liAuthors").click();

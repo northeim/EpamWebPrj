@@ -437,8 +437,8 @@
                             <th class="col-sm-1">firstName</th>
                             <th class="col-sm-1">secondName</th>
                             <th class="col-sm-2">email</th>
-                            <th class="col-sm-1">password</th>
-                            <th class="col-sm-2">roleId</th>
+                            <th class="col-sm-4">password</th>
+                            <th class="col-sm-1">roleId</th>
                             <th class="col-sm-1"></th>
                         </tr>
                         <c:forEach var="user" items="${userList}">

@@ -11,6 +11,12 @@ public class PasswordCrypter {
 
     private static final String SALT = "!<>@#--&^~%";
 
+    private BASE64Encoder base64Encoder;
+
+    public PasswordCrypter() {
+        this.base64Encoder = new BASE64Encoder();
+    }
+
     private String getMd5Hash(String hash) {
         String hashText;
         try {
@@ -26,14 +32,14 @@ public class PasswordCrypter {
     }
 
     private String encodeBase64(String hash) {
-        return new BASE64Encoder().encode(hash.getBytes());
+        return base64Encoder.encode(hash.getBytes());
     }
 
     public String calculateHash(String password) {
         String hash;
         hash = getMd5Hash(password);
         for(int i = 0; i < 1000; i++) {
-            hash = getMd5Hash(hash);
+            hash = getMd5Hash(hash + SALT);
         }
         return encodeBase64(hash);
     }
