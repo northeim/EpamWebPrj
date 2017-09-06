@@ -1,27 +1,28 @@
 <%@ page import="by.gsu.epamlab.controllers.Constant" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" errorPage="error.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sd" tagdir="/WEB-INF/tags" %>
 
-<html>
-<head>
-    <title>Header</title>
-    <meta charset="utf-8">
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-    <link rel="shortcut icon" href="resourses/img/movie_logo.jpg">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="resourses/style/bootstrap.min.css">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="resourses/style/bootstrap-theme.min.css">
-    <!-- Add user library -->
-    <link rel="stylesheet" href="resourses/style/style.css">
-    <!-- Add icon library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- JQuery -->
-    <script src="resourses/js/jquery.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="resourses/js/bootstrap.min.js"></script>
-</head>
-<body>
+<%--<html>--%>
+<%--<head>--%>
+    <%--<title>Header</title>--%>
+    <%--<meta charset="utf-8">--%>
+    <%--<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->--%>
+    <%--<link rel="shortcut icon" href="resourses/img/movie_logo.jpg">--%>
+    <%--<!-- Latest compiled and minified CSS -->--%>
+    <%--<link rel="stylesheet" href="resourses/style/bootstrap.min.css">--%>
+    <%--<!-- Optional theme -->--%>
+    <%--<link rel="stylesheet" href="resourses/style/bootstrap-theme.min.css">--%>
+    <%--<!-- Add user library -->--%>
+    <%--<link rel="stylesheet" href="resourses/style/style.css">--%>
+    <%--<!-- Add icon library -->--%>
+    <%--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">--%>
+    <%--<!-- JQuery -->--%>
+    <%--<script src="resourses/js/jquery.min.js"></script>--%>
+    <%--<!-- Latest compiled and minified JavaScript -->--%>
+    <%--<script src="resourses/js/bootstrap.min.js"></script>--%>
+<%--</head>--%>
+<%--<body>--%>
 
 <!-- Header -->
     <div class="row">
@@ -85,5 +86,5 @@
     </div>
     <hr/>
 
-</body>
-</html>
+<%--</body>--%>
+<%--</html>--%>

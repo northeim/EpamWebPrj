@@ -12,7 +12,8 @@
     <!-- Add user library -->
     <link rel="stylesheet" href="resourses/style/style.css">
     <!-- Add icon library -->
-    <link rel="stylesheet" href="resourses/style/font-awesome.min.css">
+    <%--<link rel="stylesheet" href="resourses/style/font-awesome.min.css">--%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- JQuery -->
     <script src="resourses/js/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
@@ -22,7 +23,8 @@
 
     <div class="container">
 
-        <jsp:include page="header.jsp"/>
+        <%--<jsp:include page="header.jsp"/>--%>
+        <%@include file="header.jsp"%>
 
         <!-- Content -->
 
@@ -76,8 +78,8 @@
         </div>
 
         <!-- Footer -->
-        <jsp:include page="footer.jsp"/>
-
+        <%--<jsp:include page="footer.jsp"/>--%>
+        <sd:footer/>
     </div>
 
 </body>
