@@ -24,7 +24,7 @@ public class OrdersTable implements ITableOperation {
         }
         Order order = new Order(1, userId, eventId, date, ticket);
         AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getOrderDao().insert(order);
-        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.ORDER_ADD_SUCCEFULL);
+        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.ORDER_ADD_SUCCESSFULLY);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.ORDERS);
     }
 
@@ -42,14 +42,14 @@ public class OrdersTable implements ITableOperation {
 
         Order order = new Order(id, userId, eventId, date, ticket);
         AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getOrderDao().update(order);
-        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.ORDER_EDIT_SUCCEFULL);
+        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.ORDER_EDIT_SUCCESSFULLY);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.ORDERS);
     }
 
     public void deleteRecord(HttpServletRequest req) {
         int id = Integer.parseInt(req.getParameter("id"));
         AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getOrderDao().delete(id);
-        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.ORDER_DELETE_SUCCEFULL);
+        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.ORDER_DELETE_SUCCESSFULLY);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.ORDERS);
     }
 }

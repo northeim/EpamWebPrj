@@ -43,16 +43,15 @@ public class Author {
 
         Author author = (Author) o;
 
-        if (id != author.id) return false;
-        if (!authorName.equals(author.authorName)) return false;
-        return description.equals(author.description);
+        if (authorName != null ? !authorName.equals(author.authorName) : author.authorName != null)
+            return false;
+        return description != null ? description.equals(author.description) : author.description == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + authorName.hashCode();
-        result = 31 * result + description.hashCode();
+        int result = authorName != null ? authorName.hashCode() : 0;
+        result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
     }
 
@@ -64,4 +63,5 @@ public class Author {
                 ", description='" + description + '\'' +
                 '}';
     }
+
 }

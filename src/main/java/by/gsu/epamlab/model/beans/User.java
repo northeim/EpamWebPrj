@@ -85,14 +85,27 @@ public class User {
 
         User user = (User) o;
 
-        if (nickName != null ? !nickName.equals(user.nickName) : user.nickName != null) return false;
-        return password != null ? password.equals(user.password) : user.password == null;
+        if (nickName != null ? !nickName.equals(user.nickName) : user.nickName != null)
+            return false;
+        if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null)
+            return false;
+        if (secondName != null ? !secondName.equals(user.secondName) : user.secondName != null)
+            return false;
+        if (password != null ? !password.equals(user.password) : user.password != null)
+            return false;
+        if (email != null ? !email.equals(user.email) : user.email != null)
+            return false;
+        return role != null ? role.equals(user.role) : user.role == null;
     }
 
     @Override
     public int hashCode() {
         int result = nickName != null ? nickName.hashCode() : 0;
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (secondName != null ? secondName.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (role != null ? role.hashCode() : 0);
         return result;
     }
 
@@ -108,4 +121,5 @@ public class User {
                 ", role='" + role + '\'' +
                 '}';
     }
+
 }

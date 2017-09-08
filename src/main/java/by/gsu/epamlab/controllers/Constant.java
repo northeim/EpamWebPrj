@@ -37,11 +37,10 @@ public class Constant {
         public static final String ADD = "add";
     }
 
-
     public static class Fields {
         public static final String ERROR_MESSAGE = "errorMessage";
         public static final String USER = "user";
-        public static final String USER_ACTUALY_ORDER = "userActualyOrder";
+        public static final String USER_ACTUALLY_ORDER = "userActuallyOrder";
         public static final String USER_ARCHIVE_ORDER = "userArchiveOrder";
         public static final String USER_LIST = "userList";
         public static final String ROLE_LIST = "roleList";
@@ -74,29 +73,29 @@ public class Constant {
     }
 
     public static class Message {
-        public static final String USER_ADD_SUCCEFULL = "User Add Succefull";
-        public static final String USER_EDIT_SUCCEFULL = "User Edit Succefull";
-        public static final String USER_DELETE_SUCCEFULL = "User Delete Succefull";
+        public static final String USER_ADD_SUCCESSFULLY = "User Add Successfully";
+        public static final String USER_EDIT_SUCCESSFULLY = "User Edit Successfully";
+        public static final String USER_DELETE_SUCCESSFULLY = "User Delete Successfully";
 
-        public static final String AUTHOR_ADD_SUCCEFULL = "Author Add Succefull";
-        public static final String AUTHOR_EDIT_SUCCEFULL = "Author Edit Succefull";
-        public static final String AUTHOR_DELETE_SUCCEFULL = "Author Delete Succefull";
+        public static final String AUTHOR_ADD_SUCCESSFULLY = "Author Add Successfully";
+        public static final String AUTHOR_EDIT_SUCCESSFULLY = "Author Edit Successfully";
+        public static final String AUTHOR_DELETE_SUCCESSFULLY = "Author Delete Successfully";
 
-        public static final String FILM_ADD_SUCCEFULL = "Film Add Succefull";
-        public static final String FILM_EDIT_SUCCEFULL = "Film Edit Succefull";
-        public static final String FILM_DELETE_SUCCEFULL = "Film Delete Succefull";
+        public static final String FILM_ADD_SUCCESSFULLY = "Film Add Successfully";
+        public static final String FILM_EDIT_SUCCESSFULLY = "Film Edit Successfully";
+        public static final String FILM_DELETE_SUCCESSFULLY = "Film Delete Successfully";
 
-        public static final String EVENT_ADD_SUCCEFULL = "Event Add Succefull";
-        public static final String EVENT_EDIT_SUCCEFULL = "Event Edit Succefull";
-        public static final String EVENT_DELETE_SUCCEFULL = "Event Delete Succefull";
+        public static final String EVENT_ADD_SUCCESSFULLY = "Event Add Successfully";
+        public static final String EVENT_EDIT_SUCCESSFULLY = "Event Edit Successfully";
+        public static final String EVENT_DELETE_SUCCESSFULLY = "Event Delete Successfully";
 
-        public static final String ORDER_ADD_SUCCEFULL = "Order Add Succefull";
-        public static final String ORDER_EDIT_SUCCEFULL = "Order Edit Succefull";
-        public static final String ORDER_DELETE_SUCCEFULL = "Order Delete Succefull";
+        public static final String ORDER_ADD_SUCCESSFULLY = "Order Add Successfully";
+        public static final String ORDER_EDIT_SUCCESSFULLY = "Order Edit Successfully";
+        public static final String ORDER_DELETE_SUCCESSFULLY = "Order Delete Successfully";
 
-        public static final String ROLE_ADD_SUCCEFULL = "Role Add Succefull";
-        public static final String ROLE_EDIT_SUCCEFULL = "Role Edit Succefull";
-        public static final String ROLE_DELETE_SUCCEFULL = "Role Delete Succefull";
+        public static final String ROLE_ADD_SUCCESSFULLY = "Role Add Successfully";
+        public static final String ROLE_EDIT_SUCCESSFULLY = "Role Edit Successfully";
+        public static final String ROLE_DELETE_SUCCESSFULLY = "Role Delete Successfully";
     }
 
     public static class DBTables {
@@ -117,6 +116,5 @@ public class Constant {
         public static final String AUTHORS = "#liAuthors";
         public static final String FILMS = "#liFilms";
     }
-
 
 }

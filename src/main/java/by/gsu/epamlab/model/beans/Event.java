@@ -55,14 +55,8 @@ public class Event {
 
     public void setEventDate(Date eventDate) {
         this.eventDate = eventDate;
-    }
-
-    public void setEventData(String eventData) {
-        this.eventData = eventData;
-    }
-
-    public void setEventTime(String eventTime) {
-        this.eventTime = eventTime;
+        this.eventTime = new SimpleDateFormat("HH:mm").format(eventDate);
+        this.eventData = new SimpleDateFormat("dd.MM").format(eventDate);
     }
 
     public void setFilmId(int filmId) {
@@ -76,24 +70,26 @@ public class Event {
 
         Event event = (Event) o;
 
-        if (id != event.id) return false;
         if (filmId != event.filmId) return false;
-        if (eventName != null ? !eventName.equals(event.eventName) : event.eventName != null) return false;
-        if (eventDate != null ? !eventDate.equals(event.eventDate) : event.eventDate != null) return false;
-        if (eventData != null ? !eventData.equals(event.eventData) : event.eventData != null) return false;
+        if (eventName != null ? !eventName.equals(event.eventName) : event.eventName != null)
+            return false;
+        if (eventDate != null ? !eventDate.equals(event.eventDate) : event.eventDate != null)
+            return false;
+        if (eventData != null ? !eventData.equals(event.eventData) : event.eventData != null)
+            return false;
         return eventTime != null ? eventTime.equals(event.eventTime) : event.eventTime == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (eventName != null ? eventName.hashCode() : 0);
+        int result = eventName != null ? eventName.hashCode() : 0;
         result = 31 * result + (eventDate != null ? eventDate.hashCode() : 0);
         result = 31 * result + (eventData != null ? eventData.hashCode() : 0);
         result = 31 * result + (eventTime != null ? eventTime.hashCode() : 0);
         result = 31 * result + filmId;
         return result;
     }
+
 
     @Override
     public String toString() {
@@ -106,4 +102,5 @@ public class Event {
                 ", filmId=" + filmId +
                 '}';
     }
+
 }

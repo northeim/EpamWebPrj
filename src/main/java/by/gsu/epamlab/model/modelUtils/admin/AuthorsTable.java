@@ -13,7 +13,7 @@ public class AuthorsTable implements ITableOperation {
         String description = req.getParameter("description");
         Author author = new Author(1, name, description);
         AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getAuthorDao().insert(author);
-        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.AUTHOR_ADD_SUCCEFULL);
+        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.AUTHOR_ADD_SUCCESSFULLY);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.AUTHORS);
     }
 
@@ -23,14 +23,14 @@ public class AuthorsTable implements ITableOperation {
         String description = req.getParameter("description");
         Author author = new Author(Integer.parseInt(id), name, description);
         AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getAuthorDao().update(author);
-        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.AUTHOR_EDIT_SUCCEFULL);
+        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.AUTHOR_EDIT_SUCCESSFULLY);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.AUTHORS);
     }
 
     public void deleteRecord(HttpServletRequest req) {
         String id = req.getParameter("id");
         AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getAuthorDao().delete(Integer.parseInt(id));
-        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.AUTHOR_DELETE_SUCCEFULL);
+        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.AUTHOR_DELETE_SUCCESSFULLY);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.AUTHORS);
     }
 

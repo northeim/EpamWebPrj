@@ -19,7 +19,7 @@ public class FilmsTable implements ITableOperation {
 
         Film film = new Film(1, name, description, Integer.parseInt(authorId), coverPathString);
         AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getFilmDao().insert(film);
-        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.FILM_ADD_SUCCEFULL);
+        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.FILM_ADD_SUCCESSFULLY);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.FILMS);
     }
 
@@ -31,14 +31,14 @@ public class FilmsTable implements ITableOperation {
         String coverPathString = UploadImage(req, Integer.parseInt(id));
         Film film = new Film(Integer.parseInt(id), name, description, Integer.parseInt(authorId), coverPathString);
         AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getFilmDao().update(film);
-        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.FILM_EDIT_SUCCEFULL);
+        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.FILM_EDIT_SUCCESSFULLY);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.FILMS);
     }
 
     public void deleteRecord(HttpServletRequest req) {
         String id = req.getParameter("id");
         AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getFilmDao().delete(Integer.parseInt(id));
-        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.FILM_DELETE_SUCCEFULL);
+        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.FILM_DELETE_SUCCESSFULLY);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.FILMS);
     }
 

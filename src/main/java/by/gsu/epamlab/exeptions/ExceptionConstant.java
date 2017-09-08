@@ -35,8 +35,6 @@ public class ExceptionConstant {
                 "DataBase error";
         public static final String ERROR_NO_FILM_IN_DB = "No Film In " +
                 "DataBase";
-
     }
-
 
 }

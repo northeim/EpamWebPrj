@@ -12,7 +12,7 @@ public class RoleTable implements ITableOperation {
         int levelAccess = Integer.parseInt(req.getParameter("levelAccess"));
         Role role = new Role(1, description, levelAccess);
         AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getRoleDao().insert(role);
-        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.ROLE_ADD_SUCCEFULL);
+        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.ROLE_ADD_SUCCESSFULLY);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.ROLE);
     }
 
@@ -22,14 +22,14 @@ public class RoleTable implements ITableOperation {
         int levelAccess = Integer.parseInt(req.getParameter("levelAccess"));
         Role role = new Role(id, description, levelAccess);
         AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getRoleDao().update(role);
-        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.ROLE_EDIT_SUCCEFULL);
+        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.ROLE_EDIT_SUCCESSFULLY);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.ROLE);
     }
 
     public void deleteRecord(HttpServletRequest req) {
         int id = Integer.parseInt(req.getParameter("id"));
         AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getRoleDao().delete(id);
-        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.ROLE_DELETE_SUCCEFULL);
+        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.ROLE_DELETE_SUCCESSFULLY);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.ROLE);
     }
 }

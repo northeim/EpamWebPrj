@@ -49,15 +49,13 @@ public class Role {
 
         Role role = (Role) o;
 
-        if (id != role.id) return false;
         if (levelAccess != role.levelAccess) return false;
-        return description.equals(role.description);
+        return description != null ? description.equals(role.description) : role.description == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + description.hashCode();
+        int result = description != null ? description.hashCode() : 0;
         result = 31 * result + levelAccess;
         return result;
     }
@@ -70,4 +68,5 @@ public class Role {
                 ", levelAccess=" + levelAccess +
                 '}';
     }
+    
 }

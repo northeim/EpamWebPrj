@@ -23,7 +23,7 @@ public class EventsTable implements ITableOperation {
 
         Event event = new Event(1, name, date, filmId);
         AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getEventDao().insert(event);
-        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.EVENT_ADD_SUCCEFULL);
+        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.EVENT_ADD_SUCCESSFULLY);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.EVENTS);
     }
 
@@ -40,14 +40,14 @@ public class EventsTable implements ITableOperation {
 
         Event event = new Event(id, name, date, filmId);
         AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getEventDao().update(event);
-        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.EVENT_EDIT_SUCCEFULL);
+        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.EVENT_EDIT_SUCCESSFULLY);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.EVENTS);
     }
 
     public void deleteRecord(HttpServletRequest req) {
         int id = Integer.parseInt(req.getParameter("id"));
         AbstractDaoFactory.getDaoFactory(Constant.FACTORY).getEventDao().delete(id);
-        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.EVENT_DELETE_SUCCEFULL);
+        req.setAttribute(Constant.Fields.USER_TABLE_STATUS, Constant.Message.EVENT_DELETE_SUCCESSFULLY);
         req.setAttribute(Constant.Fields.ADMIN_UL_ID, Constant.AdminLiId.EVENTS);
     }
 }

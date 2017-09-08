@@ -18,7 +18,8 @@ public class SessionLogListener implements HttpSessionListener {
             userCount++;
         }
         LOGGER.info("Enter New User On WebSite. Total Users = " + userCount);
-        httpSessionEvent.getSession().setAttribute(Constant.Fields.TOTAL_USER_ON_SITE, userCount);
+        httpSessionEvent.getSession().
+                setAttribute(Constant.Fields.TOTAL_USER_ON_SITE, userCount);
     }
 
     public void sessionDestroyed(HttpSessionEvent httpSessionEvent) {
@@ -27,4 +28,5 @@ public class SessionLogListener implements HttpSessionListener {
         }
         LOGGER.info("Logout User From WebSite. Total Users = " + userCount);
     }
+
 }

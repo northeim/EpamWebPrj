@@ -23,7 +23,6 @@ public class Order {
         this.orderData = new SimpleDateFormat("dd.MM").format(orderDate);
     }
 
-
     public String getOrderData() {
         return orderData;
     }
@@ -66,18 +65,41 @@ public class Order {
 
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
+        this.orderTime = new SimpleDateFormat("HH:mm").format(orderDate);
+        this.orderData = new SimpleDateFormat("dd.MM").format(orderDate);
     }
 
     public void setTicketString(String ticketString) {
         this.ticketString = ticketString;
     }
 
-    public void setOrderData(String orderData) {
-        this.orderData = orderData;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Order order = (Order) o;
+
+        if (userId != order.userId) return false;
+        if (eventId != order.eventId) return false;
+        if (orderDate != null ? !orderDate.equals(order.orderDate) : order.orderDate != null)
+            return false;
+        if (ticketString != null ? !ticketString.equals(order.ticketString) : order.ticketString != null)
+            return false;
+        if (orderData != null ? !orderData.equals(order.orderData) : order.orderData != null)
+            return false;
+        return orderTime != null ? orderTime.equals(order.orderTime) : order.orderTime == null;
     }
 
-    public void setOrderTime(String orderTime) {
-        this.orderTime = orderTime;
+    @Override
+    public int hashCode() {
+        int result = userId;
+        result = 31 * result + eventId;
+        result = 31 * result + (orderDate != null ? orderDate.hashCode() : 0);
+        result = 31 * result + (ticketString != null ? ticketString.hashCode() : 0);
+        result = 31 * result + (orderData != null ? orderData.hashCode() : 0);
+        result = 31 * result + (orderTime != null ? orderTime.hashCode() : 0);
+        return result;
     }
 
     @Override
@@ -88,6 +110,8 @@ public class Order {
                 ", eventId=" + eventId +
                 ", orderDate=" + orderDate +
                 ", ticketString='" + ticketString + '\'' +
+                ", orderData='" + orderData + '\'' +
+                ", orderTime='" + orderTime + '\'' +
                 '}';
     }
 }

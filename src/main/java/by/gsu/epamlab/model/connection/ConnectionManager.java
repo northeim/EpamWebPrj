@@ -1,5 +1,7 @@
 package by.gsu.epamlab.model.connection;
 
+import by.gsu.epamlab.exeptions.DataBaseException;
+
 import java.sql.*;
 
 public class ConnectionManager {
@@ -15,9 +17,9 @@ public class ConnectionManager {
             Class.forName(DB_DRIVER);
             connection =  DriverManager.getConnection(DB_URL, DB_LOGIN, DB_PASSWORD);
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e.getMessage());
+            throw new DataBaseException(e.getMessage());
         } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage());
+            throw new DataBaseException(e.getMessage());
         }
         return connection;
     }
@@ -28,7 +30,8 @@ public class ConnectionManager {
         }
     }
 
-    public static  void  close(PreparedStatement... preparedStatements) throws SQLException {
+    public static  void  close(PreparedStatement... preparedStatements)
+            throws SQLException {
         for (PreparedStatement prstm: preparedStatements){
             if (prstm != null){
                 prstm.close();

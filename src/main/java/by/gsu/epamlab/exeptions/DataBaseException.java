@@ -18,4 +18,5 @@ public class DataBaseException extends RuntimeException {
                 "value='" + value + '\'' +
                 '}';
     }
+
 }

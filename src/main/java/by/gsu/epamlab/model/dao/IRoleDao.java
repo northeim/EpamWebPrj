@@ -12,4 +12,5 @@ public interface IRoleDao {
     int insert(Role role);
     int update(Role role);
     int delete(int id);
+
 }

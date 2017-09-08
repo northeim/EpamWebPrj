@@ -7,10 +7,9 @@ import java.util.List;
 public interface IUserDao {
 
     User getUser(String login, String password);
-
-    public int insert(User user);
-    public int delete(int id);
-    public int update(User user);
-    public List<User> getAll();
+    List<User> getAll();
+    int insert(User user);
+    int update(User user);
+    int delete(int id);
 
 }
